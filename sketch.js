@@ -1,33 +1,35 @@
-var fixedRect, movingRect;
+const Engine = Matter.Engine;
+const World= Matter.World;
+const Bodies = Matter.Bodies;
 
-function setup() {
-  createCanvas(1200,800);
-  fixedRect = createSprite(400, 100, 50, 80);
-  fixedRect.shapeColor = "green";
-  fixedRect.debug = true;
-  movingRect = createSprite(400, 800,80,30);
-  movingRect.shapeColor = "green";
-  movingRect.debug = true;
+var engine, world;
+var box1,ground;
+var bird,pig
+var log
 
-  movingRect.velocityY = -5;
- // fixedRect.velocityY = +5;
+
+function setup(){
+    var canvas = createCanvas(400,400);
+    engine = Engine.create();
+    world = engine.world;
+
+    box1 = new Box(200,300,50,50);
+    box2 = new Box(240,100,50,100);
+    ground = new Ground(200,380,400,20)
+    bird = new Bird(150,250)
+    pig = new Pig (300,100)
+    log = new Log (100,200,100,PI/2)
 }
 
-function draw() {
-  background(0,0,0);  
-collide(movingRect,fixedRect)
- 
-  drawSprites();
+function draw(){
+    background(0);
+    Engine.update(engine);
+    
+    box1.display();
+    box2.display();
+    ground.display();
+   bird.display();
+   pig.display();
+   log.display();
+    
 }
-
-
-
-
-
-
-
-
-
-
-
-
